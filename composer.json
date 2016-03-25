@@ -1,0 +1,36 @@
+{
+    "name": "terdelyi/omnipay-perfectmoney",
+    "type": "library",
+    "description": "Perfect Money gateway for Omnipay payment processing library",
+    "keywords": [
+        "gateway",
+        "merchant",
+        "omnipay",
+        "pay",
+        "payment",
+        "perfectmoney",
+        "purchase"
+    ],
+    "homepage": "",
+    "license": "",
+    "authors": [
+        {
+            "name": "Tamas Erdelyi",
+            "email": "terdelyi@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Omnipay\\Perfectmoney\\" : "src/" }
+    },
+    "require": {
+        "omnipay/common": "~2.0"
+    },
+    "require-dev": {
+        "omnipay/tests": "~2.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        }
+    }
+}
