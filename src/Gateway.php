@@ -34,11 +34,22 @@ class Gateway extends AbstractGateway
         return $this->setParameter('accountName', $value);
     }
 
+    public function getPassphrase()
+    {
+        return $this->getParameter('passphrase');
+    }
+
+    public function setPassphrase($value)
+    {
+        return $this->setParameter('passphrase', $value);
+    }
+
     public function getDefaultParameters()
     {
         return array(
             'account' => '',
-            'name' => '',
+            'account_name' => '',
+            'passphrase' => '',
         );
     }
 
