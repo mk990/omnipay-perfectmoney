@@ -24,6 +24,16 @@ class Gateway extends AbstractGateway
         return $this->setParameter('account', $value);
     }
 
+    public function getAccountId()
+    {
+        return $this->getParameter('accountId');
+    }
+
+    public function setAccountId($value)
+    {
+        return $this->setParameter('accountId', $value);
+    }
+
     public function getAccountName()
     {
         return $this->getParameter('accountName');
@@ -44,6 +54,16 @@ class Gateway extends AbstractGateway
         return $this->setParameter('passphrase', $value);
     }
 
+    public function getPassword()
+    {
+        return $this->getParameter('password');
+    }
+
+    public function setPassword($value)
+    {
+        return $this->setParameter('password', $value);
+    }
+
     public function getDefaultParameters()
     {
         return array(
@@ -61,5 +81,10 @@ class Gateway extends AbstractGateway
     public function completePurchase(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\Perfectmoney\Message\CompletePurchaseRequest', $parameters);
+    }
+
+    public function refund(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Perfectmoney\Message\RefundRequest', $parameters);
     }
 }
