@@ -1,5 +1,5 @@
 {
-    "name": "terdelyi/omnipay-perfectmoney",
+    "name": "aleksandrzhiliaev/omnipay-perfectmoney",
     "type": "library",
     "description": "Perfect Money gateway for Omnipay payment processing library",
     "keywords": [
