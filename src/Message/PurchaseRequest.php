@@ -44,12 +44,12 @@ class PurchaseRequest extends AbstractRequest
         return $this->setParameter('descriptionNoChange', $value);
     }
 
-    public function getStatusUrl()
+    public function getServiceUrl()
     {
         return $this->getParameter('serviceUrl');
     }
 
-    public function setStatusUrl($value)
+    public function setServiceUrl($value)
     {
         return $this->setParameter('serviceUrl', $value);
     }
@@ -108,7 +108,7 @@ class PurchaseRequest extends AbstractRequest
         $data['PAYMENT_UNITS'] = $this->getCurrency(); // USD, EUR or OAU
         $data['PAYMENT_ID'] = $this->getTransactionId();
         $data['PAYMENT_AMOUNT'] = $this->getAmount();
-        $data['STATUS_URL'] = $this->getStatusUrl();
+        $data['STATUS_URL'] = $this->getServiceUrl();
         $data['PAYMENT_URL'] = $this->getPaymentUrl();
         $data['NOPAYMENT_URL'] = $this->getNoPaymentUrl();
         $data['INTERFACE_LANGUAGE'] = $this->getLanguage();
