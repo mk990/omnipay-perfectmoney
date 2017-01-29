@@ -36,16 +36,6 @@ class RefundRequest extends AbstractRequest
         return $this->setParameter('password', $value);
     }
 
-    public function getPayerAccount()
-    {
-        return $this->getParameter('payerAccount');
-    }
-
-    public function setPayerAccount($value)
-    {
-        return $this->setParameter('payerAccount', $value);
-    }
-
     public function getPayeeAccount()
     {
         return $this->getParameter('payeeAccount');
@@ -72,7 +62,7 @@ class RefundRequest extends AbstractRequest
 
         $data['AccountID'] = $this->getAccountId();
         $data['PassPhrase'] = $this->getPassword();
-        $data['Payer_Account'] = $this->getPayerAccount();
+        $data['Payer_Account'] = $this->getAccount();
         $data['Payee_Account'] = $this->getPayeeAccount();
         $data['Amount'] = $this->getAmount();
         $data['PAYMENT_ID'] = $this->getPaymentId();
