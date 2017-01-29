@@ -44,6 +44,11 @@ class CompletePurchaseResponse extends AbstractResponse implements RedirectRespo
         return isset($this->data['PAYMENT_ID']) ? $this->data['PAYMENT_ID'] : null;
     }
 
+    public function getAmount()
+    {
+        return isset($this->data['PAYMENT_AMOUNT']) ? $this->data['PAYMENT_AMOUNT'] : null;
+    }
+
     public function getTransactionReference()
     {
         return isset($this->data['PAYMENT_BATCH_NUM']) and $this->data['PAYMENT_BATCH_NUM'] != 0 ? $this->data['PAYMENT_BATCH_NUM'] : null;
