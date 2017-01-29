@@ -58,7 +58,7 @@ class RefundRequest extends AbstractRequest
 
     public function getData()
     {
-        $this->validate('accountId', 'payerAccount', 'payeeAccount', 'amount', 'paymentId', 'description');
+        $this->validate('accountId', 'payeeAccount', 'amount', 'paymentId', 'description');
 
         $data['AccountID'] = $this->getAccountId();
         $data['PassPhrase'] = $this->getPassword();
