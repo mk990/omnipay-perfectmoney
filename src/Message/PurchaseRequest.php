@@ -71,7 +71,7 @@ class PurchaseRequest extends AbstractRequest
 
     public function getData()
     {
-        $this->validate('account', 'accountName', 'currency', 'amount', 'noPaymentUrl', 'noPaymentUrl');
+        $this->validate('account', 'accountName', 'currency', 'amount');
 
         $data['PAYEE_ACCOUNT'] = $this->getAccount();
         $data['PAYEE_NAME'] = $this->getAccountName();
