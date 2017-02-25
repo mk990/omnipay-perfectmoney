@@ -44,36 +44,6 @@ class PurchaseRequest extends AbstractRequest
         return $this->setParameter('descriptionNoChange', $value);
     }
 
-    public function getServiceUrl()
-    {
-        return $this->getParameter('serviceUrl');
-    }
-
-    public function setServiceUrl($value)
-    {
-        return $this->setParameter('serviceUrl', $value);
-    }
-
-    public function getPaymentUrl()
-    {
-        return $this->getParameter('paymentUrl');
-    }
-
-    public function setPaymentUrl($value)
-    {
-        return $this->setParameter('paymentUrl', $value);
-    }
-
-    public function getNoPaymentUrl()
-    {
-        return $this->getParameter('noPaymentUrl');
-    }
-
-    public function setNoPaymentUrl($value)
-    {
-        return $this->setParameter('noPaymentUrl', $value);
-    }
-
     public function getEndpoint()
     {
         return $this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint;
@@ -108,9 +78,9 @@ class PurchaseRequest extends AbstractRequest
         $data['PAYMENT_UNITS'] = $this->getCurrency(); // USD, EUR or OAU
         $data['PAYMENT_ID'] = $this->getTransactionId();
         $data['PAYMENT_AMOUNT'] = $this->getAmount();
-        $data['STATUS_URL'] = $this->getServiceUrl();
-        $data['PAYMENT_URL'] = $this->getPaymentUrl();
-        $data['NOPAYMENT_URL'] = $this->getNoPaymentUrl();
+        $data['STATUS_URL'] = $this->getNotifyUrl();
+        $data['PAYMENT_URL'] = $this->getReturnUrl();
+        $data['NOPAYMENT_URL'] = $this->getCancelUrl();
         $data['INTERFACE_LANGUAGE'] = $this->getLanguage();
         $data['SUGGESTED_MEMO'] = $this->getDescription();
         $data['SUGGESTED_MEMO_NOCHANGE'] = $this->getDescriptionNoChange(); // 0 or 1
