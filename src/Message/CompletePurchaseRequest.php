@@ -6,21 +6,11 @@ use Omnipay\Common\Exception\InvalidResponseException;
 
 class CompletePurchaseRequest extends AbstractRequest
 {
-    public function getPassphrase()
-    {
-        return $this->getParameter('passphrase');
-    }
-
-    public function setPassphrase($value)
-    {
-        return $this->setParameter('passphrase', $value);
-    }
-
     public function getData()
     {
-        $theirHash = (string) $this->httpRequest->request->get('V2_HASH');
+        $theirHash = (string)$this->httpRequest->request->get('V2_HASH');
         $ourHash = $this->createResponseHash($this->httpRequest->request->all());
-        $paymountId = (string) $this->httpRequest->request->get('PAYMENT_ID');
+        $paymountId = (string)$this->httpRequest->request->get('PAYMENT_ID');
 
         if ($theirHash !== $ourHash) {
             throw new InvalidResponseException("Callback hash does not match expected value");
