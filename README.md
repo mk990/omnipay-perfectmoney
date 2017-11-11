@@ -1,6 +1,6 @@
 # omnipay-perfectmoney
 [![Build Status](https://travis-ci.org/aleksandrzhiliaev/omnipay-perfectmoney.svg?branch=master)](https://travis-ci.org/aleksandrzhiliaev/omnipay-perfectmoney)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce94ca65540c4d98b3785ab5a89fd797)](https://www.codacy.com/app/sassoftinc/omnipay-nixmoney?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=aleksandrzhiliaev/omnipay-nixmoney&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a4e2fa978f7d47688581496e640b0eea)](https://www.codacy.com/app/sassoftinc/omnipay-perfectmoney?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=aleksandrzhiliaev/omnipay-perfectmoney&amp;utm_campaign=Badge_Grade)
 
 Perfectmoney gateway for [Omnipay](https://github.com/thephpleague/omnipay) payment processing library.
 
@@ -44,7 +44,6 @@ $gateway->setAccount('');
 $gateway->setAccountName('');
 $gateway->setBaggageFields('');
 $gateway->setSuggestedMemo('');
-$gateway->setPasswordMd5('');
 $gateway->setPassphrase('');
 $gateway->setCurrency('');
 
@@ -104,9 +103,9 @@ try {
 try {
     $response = $gateway->refund(
         [
-            'payeeAccount' => 'U04174047283211',
+            'payeeAccount' => 'U123456789',
             'amount' => 0.1,
-            'description' => 'Testing nixmoney',
+            'description' => 'Testing perfectmoney',
             'currency' => 'USD',
         ]
     )->send();
