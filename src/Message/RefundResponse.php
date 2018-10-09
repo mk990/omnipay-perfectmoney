@@ -39,7 +39,7 @@ class RefundResponse extends AbstractResponse
             return false;
         }
 
-        $ar = "";
+        $ar = [];
         foreach ($result as $item) {
             $key = $item[1];
             $ar[$key] = $item[2];
