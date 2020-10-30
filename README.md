@@ -1,45 +1,45 @@
-# omnipay-perfectmoney
+# omnipay-perfectMoney
 [![Build Status](https://travis-ci.org/aleksandrzhiliaev/omnipay-perfectmoney.svg?branch=master)](https://travis-ci.org/aleksandrzhiliaev/omnipay-perfectmoney)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a4e2fa978f7d47688581496e640b0eea)](https://www.codacy.com/app/sassoftinc/omnipay-perfectmoney?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=aleksandrzhiliaev/omnipay-perfectmoney&amp;utm_campaign=Badge_Grade)
 [![Total Downloads](https://poser.pugx.org/aleksandrzhiliaev/omnipay-perfectmoney/downloads)](https://packagist.org/packages/aleksandrzhiliaev/omnipay-perfectmoney)
 
-Perfectmoney gateway for [Omnipay](https://github.com/thephpleague/omnipay) payment processing library.
+PerfectMoney gateway for [Omnipay](https://github.com/thephpleague/omnipay) payment processing library.
 
 [Omnipay](https://github.com/omnipay/omnipay) is a framework agnostic, multi-gateway payment
-processing library for PHP 5.3+. This package implements Perfectmoney support for Omnipay.
+processing library for PHP 7.2+. This package implements PerfectMoney support for Omnipay.
 
 ## Installation
 
-Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply add it
+install Omnipay via [Composer](http://getcomposer.org/). To install, simply add it
 to your `composer.json` file:
 
 ```json
 {
     "require": {
-        "aleksandrzhiliaev/omnipay-perfectmoney": "*"
+        "mk990/omnipay-perfectmoney": "*"
     }
 }
 ```
 
-And run composer to update your dependencies:
+run composer to update your dependencies:
 
     $ curl -s http://getcomposer.org/installer | php
     $ php composer.phar update
 
 ## Basic Usage
 
-The following gateways are provided by this package:
+The following gateways provided by this package:
 
-* Perfectmoney
+  * PerfectMoney
 
 For general usage instructions, please see the main [Omnipay](https://github.com/omnipay/omnipay)
-repository. See also the [Perfectmoney Documentation](https://perfectmoney.is/sample-api.html)
+repository. See [PerfectMoney Documentation](https://perfectmoney.is/sample-api.html)
 
 ## Example
-1. Purchase:
+ 1. Purchase:
 ```php
 
-$gateway = Omnipay::create('Perfectmoney');
+$gateway = Omnipay::create('PerfectMoney');
 
 $gateway->setAccount('');
 $gateway->setAccountName('');
@@ -84,7 +84,7 @@ if ($response->isSuccessful()) {
    echo $response->getMessage();
 }
 ```
-2. Validate webhook
+ 2. Validate webhook
 ```php
 try {
     $response = $gateway->completePurchase()->send();
@@ -99,14 +99,14 @@ try {
   // check $e->getMessage()
 }
 ```
-3. Do refund
+ 3. Do refund
 ```php
 try {
     $response = $gateway->refund(
         [
             'payeeAccount' => 'U123456789',
             'amount' => 0.1,
-            'description' => 'Testing perfectmoney',
+            'description' => 'Testing perfectMoney',
             'currency' => 'USD',
         ]
     )->send();
@@ -128,7 +128,7 @@ If you are having general issues with Omnipay, we suggest posting on
 [Stack Overflow](http://stackoverflow.com/). Be sure to add the
 [omnipay tag](http://stackoverflow.com/questions/tagged/omnipay) so it can be easily found.
 
-If you want to keep up to date with release anouncements, discuss ideas for the project,
+If you want to keep up to date with release announcements, discuss ideas for the project,
 or ask more detailed questions, there is also a [mailing list](https://groups.google.com/forum/#!forum/omnipay) which
 you can subscribe to.
 

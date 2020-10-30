@@ -7,14 +7,12 @@ use Omnipay\Common\Message\RequestInterface;
 
 class RefundResponse extends AbstractResponse
 {
-    protected $redirectUrl;
     protected $message;
     protected $success;
 
     public function __construct(RequestInterface $request, $data)
     {
-        $this->request = $request;
-        $this->data    = $data;
+        parent::__construct($request, $data);
         $this->success = false;
         $this->parseResponse();
     }
@@ -37,15 +35,15 @@ class RefundResponse extends AbstractResponse
             return false;
         }
 
-        $ar = [];
+        $arr = [];
         foreach ($result as $item) {
             $key      = $item[1];
-            $ar[$key] = $item[2];
+            $arr[$key] = $item[2];
         }
 
 
-        if (isset($ar['ERROR'])) {
-            $this->message = $ar['ERROR'];
+        if (isset($arr['ERROR'])) {
+            $this->message = $arr['ERROR'];
             $this->success = false;
             return false;
         }

@@ -15,7 +15,7 @@ class CompletePurchaseRequestTest extends TestCase
     protected function setUp()
     {
         $arguments = [$this->getHttpClient(), $this->getHttpRequest()];
-        $this->request = m::mock('Omnipay\PerfectMoney\Message\CompletePurchaseRequest[getEndpoint]', $arguments);
+        $this->request = (new m)->mock('Omnipay\PerfectMoney\Message\CompletePurchaseRequest[getEndpoint]', $arguments);
         $this->request->setAccount('Account');
         $this->request->setAccountName('AccountName');
         $this->request->setPassphrase('Passphrase');
@@ -33,9 +33,9 @@ class CompletePurchaseRequestTest extends TestCase
             'TIMESTAMPGMT' => '1488022539',
         ];
 
-        $alternate_password_hash = strtoupper(md5($this->request->getPassphrase()));
+        $passwordHash = strtoupper(md5($this->request->getPassphrase()));
 
-        $expectedFingerprint = "{$parameters['PAYMENT_ID']}:{$parameters['PAYEE_ACCOUNT']}:{$parameters['PAYMENT_AMOUNT']}:{$parameters['PAYMENT_UNITS']}:{$parameters['PAYMENT_BATCH_NUM']}:{$parameters['PAYER_ACCOUNT']}:{$alternate_password_hash}:{$parameters['TIMESTAMPGMT']}";
+        $expectedFingerprint = "{$parameters['PAYMENT_ID']}:{$parameters['PAYEE_ACCOUNT']}:{$parameters['PAYMENT_AMOUNT']}:{$parameters['PAYMENT_UNITS']}:{$parameters['PAYMENT_BATCH_NUM']}:{$parameters['PAYER_ACCOUNT']}:{$passwordHash}:{$parameters['TIMESTAMPGMT']}";
 
         $fingerprint = $this->request->createResponseHash($parameters);
         $this->assertEquals(strtoupper(md5($expectedFingerprint)), $fingerprint);
@@ -43,15 +43,15 @@ class CompletePurchaseRequestTest extends TestCase
 
     public function testSendSuccess()
     {
-        $parameters = [
-            'PAYMENT_ID' => '1488022447',
-            'PAYEE_ACCOUNT' => 'U123456789',
-            'PAYMENT_AMOUNT' => '0.10',
-            'PAYMENT_UNITS' => 'USD',
-            'PAYMENT_BATCH_NUM' => '636723',
-            'PAYER_ACCOUNT' => 'U04174047283211',
-            'TIMESTAMPGMT' => '1488022539',
-        ];
+//        $parameters = [
+//            'PAYMENT_ID' => '1488022447',
+//            'PAYEE_ACCOUNT' => 'U123456789',
+//            'PAYMENT_AMOUNT' => '0.10',
+//            'PAYMENT_UNITS' => 'USD',
+//            'PAYMENT_BATCH_NUM' => '636723',
+//            'PAYER_ACCOUNT' => 'U04174047283211',
+//            'TIMESTAMPGMT' => '1488022539',
+//        ];
 
         $httpRequest = new HttpRequest([], [
             'PAYEE_ACCOUNT' => 'U123456789',
