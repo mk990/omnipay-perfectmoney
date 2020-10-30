@@ -1,5 +1,5 @@
 {
-    "name": "aleksandrzhiliaev/omnipay-perfectmoney",
+    "name": "mk990/omnipay-perfectmoney",
     "type": "library",
     "description": "Perfect Money gateway for Omnipay payment processing library",
     "keywords": [
@@ -11,26 +11,34 @@
         "perfectmoney",
         "purchase"
     ],
-    "homepage": "http://sassoft.ru",
     "license": "",
     "authors": [
         {
-            "name": "Tamas Erdelyi",
-            "email": "terdelyi@gmail.com"
+            "name": "mohammad hemmati",
+            "email": "m.kemeshki@gmail.com"
         }
     ],
     "autoload": {
-        "psr-4": { "Omnipay\\Perfectmoney\\" : "src/" }
+        "psr-4": {
+            "Omnipay\\PerfectMoney\\" : "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Omnipay\\PerfectMoney\\Tests\\": "tests/"
+        }
     },
     "require": {
-        "omnipay/common": "~2.0"
+        "php": "^7.2",
+        "ext-json": "*",
+        "omnipay/common": "^3.0"
     },
     "require-dev": {
-        "omnipay/tests": "~2.0"
+        "omnipay/tests": "^3.0"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.x-dev"
+            "dev-master": "1.0.x-dev"
         }
     }
 }

@@ -1,7 +1,9 @@
 <?php
 
-namespace Omnipay\Perfectmoney\Message;
+namespace Omnipay\PerfectMoney\Tests\Message;
 
+use Omnipay\Common\Exception\InvalidRequestException;
+use Omnipay\PerfectMoney\Message\PurchaseRequest;
 use Omnipay\Tests\TestCase;
 
 class PurchaseRequestTest extends TestCase
@@ -21,7 +23,7 @@ class PurchaseRequestTest extends TestCase
         $this->request->setAccountName('AccountName');
         $this->request->setBaggageFields('BaggageFields');
         $this->request->setPassphrase('Passphrase');
-        $this->request->setCurrency('Currency');
+        $this->request->setCurrency('USD');
         $this->request->setAmount('10.00');
         $this->request->setReturnUrl('ReturnUrl');
         $this->request->setCancelUrl('CancelUrl');
@@ -33,22 +35,25 @@ class PurchaseRequestTest extends TestCase
         $this->request->setAvailablePaymentMethods('all');
     }
 
+    /**
+     * @throws InvalidRequestException
+     */
     public function testGetData()
     {
         $data = $this->request->getData();
 
         $expectedData = [
-            'PAYEE_ACCOUNT' => 'Account',
-            'PAYEE_NAME' => 'AccountName',
-            'PAYMENT_UNITS' => 'CURRENCY',
-            'PAYMENT_ID' => 1,
-            'PAYMENT_AMOUNT' => '10.00',
-            'STATUS_URL' => 'NotifyUrl',
-            'PAYMENT_URL' => 'ReturnUrl',
-            'NOPAYMENT_URL' => 'CancelUrl',
-            'INTERFACE_LANGUAGE' => 'Language',
-            'SUGGESTED_MEMO' => 'Description',
-            'SUGGESTED_MEMO_NOCHANGE' => 0,
+            'PAYEE_ACCOUNT'             => 'Account',
+            'PAYEE_NAME'                => 'AccountName',
+            'PAYMENT_UNITS'             => 'USD',
+            'PAYMENT_ID'                => 1,
+            'PAYMENT_AMOUNT'            => '10.00',
+            'STATUS_URL'                => 'NotifyUrl',
+            'PAYMENT_URL'               => 'ReturnUrl',
+            'NOPAYMENT_URL'             => 'CancelUrl',
+            'INTERFACE_LANGUAGE'        => 'Language',
+            'SUGGESTED_MEMO'            => 'Description',
+            'SUGGESTED_MEMO_NOCHANGE'   => 0,
             'AVAILABLE_PAYMENT_METHODS' => 'all',
 
         ];

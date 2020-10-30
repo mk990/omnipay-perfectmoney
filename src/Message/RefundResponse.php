@@ -1,11 +1,9 @@
 <?php
 
-namespace Omnipay\Perfectmoney\Message;
+namespace Omnipay\PerfectMoney\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
-use Omnipay\Common\Message\RedirectResponseInterface;
 use Omnipay\Common\Message\RequestInterface;
-use Omnipay\Perfectmoney\Support\Helpers;
 
 class RefundResponse extends AbstractResponse
 {
@@ -16,7 +14,7 @@ class RefundResponse extends AbstractResponse
     public function __construct(RequestInterface $request, $data)
     {
         $this->request = $request;
-        $this->data = $data;
+        $this->data    = $data;
         $this->success = false;
         $this->parseResponse();
     }
@@ -41,7 +39,7 @@ class RefundResponse extends AbstractResponse
 
         $ar = [];
         foreach ($result as $item) {
-            $key = $item[1];
+            $key      = $item[1];
             $ar[$key] = $item[2];
         }
 
@@ -52,7 +50,7 @@ class RefundResponse extends AbstractResponse
             return false;
         }
 
-        $this->success = true;
+        return $this->success = true;
     }
 
 }

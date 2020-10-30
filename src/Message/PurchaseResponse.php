@@ -1,11 +1,10 @@
 <?php
 
-namespace Omnipay\Perfectmoney\Message;
+namespace Omnipay\PerfectMoney\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RedirectResponseInterface;
 use Omnipay\Common\Message\RequestInterface;
-use Omnipay\Perfectmoney\Support\Helpers;
 
 class PurchaseResponse extends AbstractResponse implements RedirectResponseInterface
 {

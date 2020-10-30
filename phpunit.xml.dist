@@ -10,7 +10,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="Omnipay Perfectmoney Test Suite">
+        <testsuite name="Omnipay PerfectMoney Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

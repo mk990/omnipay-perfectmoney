@@ -1,8 +1,10 @@
 <?php
 
-namespace Omnipay\Perfectmoney\Message;
+namespace Omnipay\PerfectMoney\Tests\Message;
 
-use Guzzle\Plugin\Mock\MockPlugin;
+use Omnipay\Common\Exception\InvalidRequestException;
+use Omnipay\PerfectMoney\Message\PurchaseRequest;
+use Omnipay\PerfectMoney\Message\RefundRequest;
 use Omnipay\Tests\TestCase;
 
 class RefundRequestTest extends TestCase
@@ -17,12 +19,7 @@ class RefundRequestTest extends TestCase
 
     protected function setUp()
     {
-        $mockPlugin = new MockPlugin();
-        $mockPlugin->addResponse($this->getMockHttpResponse('RefundSuccess.txt'));
-        $httpClient = $this->getHttpClient();
-        $httpClient->addSubscriber($mockPlugin);
-
-        $this->request = new RefundRequest($httpClient, $this->getHttpRequest());
+        $this->request = new RefundRequest($this->getHttpClient(), $this->getHttpRequest());
 
         $this->request->setPayeeAccount('PayeeAccount');
         $this->request->setAmount('10.00');
@@ -33,19 +30,22 @@ class RefundRequestTest extends TestCase
         $this->request->setPaymentId('PaymentId');
     }
 
+    /**
+     * @throws InvalidRequestException
+     */
     public function testGetData()
     {
         $data = $this->request->getData();
 
         $expectedData = [
-            'PassPhrase' => 'Password',
+            'PassPhrase'    => 'Password',
             'Payer_Account' => 'Account',
             'Payee_Account' => 'PayeeAccount',
-            'Amount' => '10.00',
-            'Memo' => 'Description',
-            'PAY_IN' => '1',
-            'AccountID' => 'AccountId',
-            'PAYMENT_ID' => 'PaymentId',
+            'Amount'        => '10.00',
+            'Memo'          => 'Description',
+            'PAY_IN'        => '1',
+            'AccountID'     => 'AccountId',
+            'PAYMENT_ID'    => 'PaymentId',
         ];
 
         $this->assertEquals($expectedData, $data);
@@ -54,17 +54,12 @@ class RefundRequestTest extends TestCase
     public function testSendSuccess()
     {
         $response = $this->request->send();
-        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isSuccessful());
     }
 
     public function testSendError()
     {
-        $mockPlugin = new MockPlugin();
-        $mockPlugin->addResponse($this->getMockHttpResponse('RefundError.txt'));
-        $httpClient = $this->getHttpClient();
-        $httpClient->addSubscriber($mockPlugin);
-
-        $this->request = new RefundRequest($httpClient, $this->getHttpRequest());
+        $this->request = new RefundRequest($this->getHttpClient(), $this->getHttpRequest());
         $this->request->setPayeeAccount('PayeeAccount');
         $this->request->setAmount('10.00');
         $this->request->setDescription('Description');

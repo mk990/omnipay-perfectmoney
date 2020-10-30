@@ -1,8 +1,9 @@
 <?php
 
-namespace Omnipay\Perfectmoney\Message;
+namespace Omnipay\PerfectMoney\Tests\Message;
 
 use Mockery as m;
+use Omnipay\PerfectMoney\Message\CompletePurchaseRequest;
 use Omnipay\Tests\TestCase;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
@@ -14,7 +15,7 @@ class CompletePurchaseRequestTest extends TestCase
     protected function setUp()
     {
         $arguments = [$this->getHttpClient(), $this->getHttpRequest()];
-        $this->request = m::mock('Omnipay\Perfectmoney\Message\CompletePurchaseRequest[getEndpoint]', $arguments);
+        $this->request = m::mock('Omnipay\PerfectMoney\Message\CompletePurchaseRequest[getEndpoint]', $arguments);
         $this->request->setAccount('Account');
         $this->request->setAccountName('AccountName');
         $this->request->setPassphrase('Passphrase');
@@ -34,10 +35,10 @@ class CompletePurchaseRequestTest extends TestCase
 
         $alternate_password_hash = strtoupper(md5($this->request->getPassphrase()));
 
-        $expectedFingerpring = "{$parameters['PAYMENT_ID']}:{$parameters['PAYEE_ACCOUNT']}:{$parameters['PAYMENT_AMOUNT']}:{$parameters['PAYMENT_UNITS']}:{$parameters['PAYMENT_BATCH_NUM']}:{$parameters['PAYER_ACCOUNT']}:{$alternate_password_hash}:{$parameters['TIMESTAMPGMT']}";
+        $expectedFingerprint = "{$parameters['PAYMENT_ID']}:{$parameters['PAYEE_ACCOUNT']}:{$parameters['PAYMENT_AMOUNT']}:{$parameters['PAYMENT_UNITS']}:{$parameters['PAYMENT_BATCH_NUM']}:{$parameters['PAYER_ACCOUNT']}:{$alternate_password_hash}:{$parameters['TIMESTAMPGMT']}";
 
         $fingerprint = $this->request->createResponseHash($parameters);
-        $this->assertEquals(strtoupper(md5($expectedFingerpring)), $fingerprint);
+        $this->assertEquals(strtoupper(md5($expectedFingerprint)), $fingerprint);
     }
 
     public function testSendSuccess()

@@ -1,22 +1,20 @@
 <?php
 
-namespace Omnipay\Perfectmoney\Message;
+namespace Omnipay\PerfectMoney\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RedirectResponseInterface;
-use Omnipay\Common\Message\RequestInterface;
-use Exception;
 
 class CompletePurchaseResponse extends AbstractResponse implements RedirectResponseInterface
 {
     public function isSuccessful()
     {
-        return ($this->data['PAYMENT_BATCH_NUM'] != 0) ? true : false;
+        return $this->data['PAYMENT_BATCH_NUM'] != 0;
     }
 
     public function isCancelled()
     {
-        return ($this->data['PAYMENT_BATCH_NUM'] == 0) ? true : false;
+        return $this->data['PAYMENT_BATCH_NUM'] == 0;
     }
 
     public function isRedirect()

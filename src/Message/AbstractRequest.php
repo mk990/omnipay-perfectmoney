@@ -1,15 +1,28 @@
 <?php
 
-namespace Omnipay\Perfectmoney\Message;
+namespace Omnipay\PerfectMoney\Message;
 
 use Omnipay\Common\Message\AbstractRequest as OmnipayRequest;
 
 abstract class AbstractRequest extends OmnipayRequest
 {
-    protected $liveEndpoint = 'https://perfectmoney.is/api/step1.asp';
-
+    /**
+     * Sandbox Endpoint URL
+     *
+     * @var string URL
+     */
     protected $testEndpoint = 'https://perfectmoney.is/api/step1.asp';
 
+    /**
+     * Live Endpoint URL
+     *
+     * @var string URL
+     */
+    protected $liveEndpoint = 'https://perfectmoney.is/api/step1.asp';
+
+    /**
+     * @return string
+     */
     public function getEndpoint()
     {
         return $this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint;
