@@ -16,7 +16,6 @@ class CompletePurchaseRequest extends AbstractRequest
     {
         $theirHash = (string)$this->httpRequest->request->get('V2_HASH');
         $ourHash   = $this->createResponseHash($this->httpRequest->request->all());
-//        $paymentId = (string)$this->httpRequest->request->get('PAYMENT_ID');
 
         if ($theirHash !== $ourHash) {
             throw new InvalidResponseException("Callback hash does not match expected value");
@@ -39,9 +38,15 @@ class CompletePurchaseRequest extends AbstractRequest
     {
         $this->validate('passphrase');
 
-        $passwordHash = strtoupper(md5($this->getPassphrase()));
-        $fingerprint             = "{$parameters['PAYMENT_ID']}:{$parameters['PAYEE_ACCOUNT']}:{$parameters['PAYMENT_AMOUNT']}:{$parameters['PAYMENT_UNITS']}:{$parameters['PAYMENT_BATCH_NUM']}:{$parameters['PAYER_ACCOUNT']}:{$passwordHash}:{$parameters['TIMESTAMPGMT']}";
-
-        return strtoupper(md5($fingerprint));
+        return strtoupper(md5(implode(':', [
+            $parameters['PAYMENT_ID'],
+            $parameters['PAYEE_ACCOUNT'],
+            $parameters['PAYMENT_AMOUNT'],
+            $parameters['PAYMENT_UNITS'],
+            $parameters['PAYMENT_BATCH_NUM'],
+            $parameters['PAYER_ACCOUNT'],
+            strtoupper(md5($this->getPassphrase())),
+            $parameters['TIMESTAMPGMT'],
+        ])));
     }
 }

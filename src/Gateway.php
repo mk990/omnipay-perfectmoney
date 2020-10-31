@@ -37,9 +37,9 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return array(
-            'account'      => '',
-            'account_name' => '',
-            'passphrase'   => '',
+            'account'     => '',
+            'accountName' => '',
+            'passphrase'  => '',
         );
     }
 

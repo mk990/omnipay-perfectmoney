@@ -14,7 +14,7 @@ class CompletePurchaseRequestTest extends TestCase
 
     protected function setUp()
     {
-        $arguments = [$this->getHttpClient(), $this->getHttpRequest()];
+        $arguments     = [$this->getHttpClient(), $this->getHttpRequest()];
         $this->request = (new m)->mock('Omnipay\PerfectMoney\Message\CompletePurchaseRequest[getEndpoint]', $arguments);
         $this->request->setAccount('Account');
         $this->request->setAccountName('AccountName');
@@ -24,13 +24,13 @@ class CompletePurchaseRequestTest extends TestCase
     public function testCreateResponseHash()
     {
         $parameters = [
-            'PAYMENT_ID' => '1488022447',
-            'PAYEE_ACCOUNT' => 'U123456789',
-            'PAYMENT_AMOUNT' => '0.10',
-            'PAYMENT_UNITS' => 'USD',
+            'PAYMENT_ID'        => '1488022447',
+            'PAYEE_ACCOUNT'     => 'U123456789',
+            'PAYMENT_AMOUNT'    => '0.10',
+            'PAYMENT_UNITS'     => 'USD',
             'PAYMENT_BATCH_NUM' => '636723',
-            'PAYER_ACCOUNT' => 'U04174047283211',
-            'TIMESTAMPGMT' => '1488022539',
+            'PAYER_ACCOUNT'     => 'U04174047283211',
+            'TIMESTAMPGMT'      => '1488022539',
         ];
 
         $passwordHash = strtoupper(md5($this->request->getPassphrase()));
@@ -54,16 +54,16 @@ class CompletePurchaseRequestTest extends TestCase
 //        ];
 
         $httpRequest = new HttpRequest([], [
-            'PAYEE_ACCOUNT' => 'U123456789',
-            'PAYMENT_ID' => '1488022447',
-            'PAYMENT_AMOUNT' => '0.10',
-            'PAYMENT_UNITS' => 'USD',
+            'PAYEE_ACCOUNT'     => 'U123456789',
+            'PAYMENT_ID'        => '1488022447',
+            'PAYMENT_AMOUNT'    => '0.10',
+            'PAYMENT_UNITS'     => 'USD',
             'PAYMENT_BATCH_NUM' => '636723',
-            'PAYER_ACCOUNT' => 'U04174047283211',
-            'TIMESTAMPGMT' => '1488022539',
-            'V2_HASH' => '34669B3A76D5F2F8F37A490EF1CE0409',
+            'PAYER_ACCOUNT'     => 'U04174047283211',
+            'TIMESTAMPGMT'      => '1488022539',
+            'V2_HASH'           => '34669B3A76D5F2F8F37A490EF1CE0409',
         ]);
-        $request = new CompletePurchaseRequest($this->getHttpClient(), $httpRequest);
+        $request     = new CompletePurchaseRequest($this->getHttpClient(), $httpRequest);
         $request->setPassphrase('Passphrase');
         $response = $request->send();
         $this->assertTrue($response->isSuccessful());

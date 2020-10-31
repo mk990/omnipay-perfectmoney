@@ -11,7 +11,7 @@
         "perfectmoney",
         "purchase"
     ],
-    "license": "",
+    "license": "MIT",
     "authors": [
         {
             "name": "mohammad hemmati",
@@ -20,7 +20,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Omnipay\\PerfectMoney\\" : "src/"
+            "Omnipay\\PerfectMoney\\": "src/"
         }
     },
     "autoload-dev": {
@@ -38,7 +38,9 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "3.x-dev"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
